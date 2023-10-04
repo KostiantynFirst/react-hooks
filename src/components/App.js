@@ -53,32 +53,54 @@ import { GlobalStyle } from './GlobalStyle';
 //   );
 // };
 
+// const getCats = async () => {
+//   const res = await axios.get(
+//     'https://api.thecatapi.com/v1/images/search?limit=10', 
+//     {
+//       headers: { 'x-api-key': process.env.REACT_APP_CAT_API_KEY },
+//     }
+//   );
+
+//  return res.data;
+// }
+
+const getBreeds = async () => {
+  const res = await axios.get('https://api.thecatapi.com/v1/breeds', 
+  {
+    headers: { 'x-api-key': process.env.REACT_APP_CAT_API_KEY },
+  });
+
+  return res.data
+}
+
 export const App = () => {
 
- const [cats, setCats] = useState([]);
+ const [breeds, setBreeds] = useState([]);
 
   useEffect(() => {
-    async function fetchCats() {
-      const res = await axios.get(
-        'https://api.thecatapi.com/v1/images/search?limit=10', 
-        {
-          headers: { 'x-api-key': process.env.REACT_APP_CAT_API_KEY },
-        }
-      );
-
-      setCats(res.data);
+    async function fetchBreeds() {
+      const data = await getBreeds();
+      setBreeds(data)
     }
 
-    fetchCats();
+    fetchBreeds();
   }, 
   
   []);
 
-  console.log(cats);
+  console.log(breeds);
 
   return (
     <>
-  {cats.map((cat, idx) => <div key={idx}> <img src={cat.url} alt='' /></div>)}
+  {breeds.length > 0 && (
+      <select>
+        {breeds.map(breed => 
+          <option key={breed.id} value={breed.id}>
+            {breed.name}
+          </option> )}
+      </select>
+  )}
+  {/* {cats.map((cat, idx) => <div key={idx}> <img src={cat.url} alt='' width={320}/></div>)} */}
 
     <GlobalStyle />
     </>
