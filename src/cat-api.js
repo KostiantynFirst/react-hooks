@@ -5,7 +5,7 @@ axios.defaults.headers.common['x-api-key'] = process.env.REACT_APP_CAT_API_KEY;
 
 export const getCats = async (breed) => {
   const res = await axios.get(
-    `/images/search?breed_ids=${breed}&limit=10`, 
+    `/images/search?breed_ids=${breed}&limit=20`, 
   );
  return res.data;
 }

@@ -3,6 +3,9 @@ import Select from 'react-select';
 import { GlobalStyle } from './GlobalStyle';
 import { getBreeds, getCats } from '../cat-api';
 
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
+
 export const App = () => {
 
  const [breeds, setBreeds] = useState([]);
@@ -46,7 +49,17 @@ export const App = () => {
       <Select options={options} onChange={option => setSelectedBreed(option.value)}>
       </Select>
   )} 
-  {cats && (cats.map((cat, idx) => <div key={idx}> <img src={cat.url} alt='' width={320}/></div>))}
+
+
+  {cats.length > 0 && (
+   <ImageGallery 
+      items={cats.map(cat => ({
+        original: cat.url,
+        thumbnail: cat.url,
+        description: cat.id,
+    }))}
+   />
+  )}
     <GlobalStyle />
     </>
   )
