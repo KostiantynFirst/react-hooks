@@ -1,11 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
-import 'normalize.css';
+import 'modern-normalize';
 
 export const GlobalStyle = createGlobalStyle`
-  * {
-    box-sizing: border-box;
-  }
-
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -22,5 +18,11 @@ export const GlobalStyle = createGlobalStyle`
 
   h1,h2,h3,h4,h5,h6,p {
     margin: 0;
+  }
+
+  ul,ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
   }
 `;
