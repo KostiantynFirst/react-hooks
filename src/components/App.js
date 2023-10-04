@@ -57,13 +57,14 @@ export const App = () => {
 
 
   {galleryiVisible && cats.length > 0 && (
-    <div style={{maxWidth: '100%', margin: '0 auto' }}>
+    <div style={{maxWidth: '100%', maxHeight: '240px', margin: '0 auto' }}>
          <ImageGallery 
             items={cats.map(cat => ({
             original: cat.url,
             thumbnail: cat.url,
             // description: cat.breeds[0].wikipedia_url,
     }))}
+          lazyLoad={true}
           // showThumbnails={false}
           // showFullscreenButton={false}
           // showPlayButton={false}
