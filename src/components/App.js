@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-// import Select from 'react-select';
+import Select from 'react-select';
 import { GlobalStyle } from './GlobalStyle';
 // import { getBreeds, getCats } from '../cat-api';
 // import { StickerList } from './StickerList';
@@ -88,17 +88,22 @@ export const App = () => {
   
   []);
 
-  console.log(breeds);
+  const options = breeds.map(breed => ({
+    value: breed.id,
+    label: breed.name,
+  }))
+
+
 
   return (
     <>
-  {breeds.length > 0 && (
-      <select>
+  {options.length > 0 && (
+      <Select options={options}>
         {breeds.map(breed => 
           <option key={breed.id} value={breed.id}>
             {breed.name}
           </option> )}
-      </select>
+      </Select>
   )}
   {/* {cats.map((cat, idx) => <div key={idx}> <img src={cat.url} alt='' width={320}/></div>)} */}
 
