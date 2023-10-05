@@ -75,27 +75,14 @@ export const App = () => {
 </SelectContainer>
 
 
-<GalleryContainer>
- {loading && galleryiVisible ? (
-    <BeatLoader 
-    color="#00BFFF"
-    size={80}
-    aria-label="Loading Spinner"
-    data-testid="loader"
-  />
- ) : (
-   cats.length > 0 && (
-    <ImageGallery 
-       items={cats.map(cat => ({
-       original: cat.url,
-       thumbnail: cat.url,
-       // description: cat.breeds[0].wikipedia_url,
-}))}
-     lazyLoad={true}
-/>
-)
- )}
-  </GalleryContainer>
+{cats.length > 0 && (
+        <GalleryContainer visible={galleryiVisible}>
+          <ImageGallery items={cats.map(cat => ({
+            original: cat.url,
+            thumbnail: cat.url,
+          }))} lazyLoad={true} />
+        </GalleryContainer>
+      )}
 
 
     <GlobalStyle />
