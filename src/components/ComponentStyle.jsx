@@ -13,7 +13,7 @@ export const AppContainer = styled.div`
 export const StyledTitle = styled.h2`
   font-size: 24px;
   color: #00BFFF;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   margin-top: 20px;
 `;
 
