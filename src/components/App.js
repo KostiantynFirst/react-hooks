@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
+import BeatLoader from "react-spinners/BeatLoader";
 import { GlobalStyle } from './GlobalStyle';
 import { getBreeds, getCats } from '../cat-api';
 
@@ -8,12 +9,14 @@ import { SelectContainer, GalleryContainer, AppContainer } from './ComponentStyl
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 
+
 export const App = () => {
 
  const [breeds, setBreeds] = useState([]);
  const [selectedBreed, setSelectedBreed] = useState(null);
  const [cats, setCats] = useState([]);
- const [galleryiVisible, setGalleryiVisible] = useState(false)
+ const [galleryiVisible, setGalleryiVisible] = useState(false);
+ const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchBreeds() {
@@ -34,9 +37,11 @@ export const App = () => {
         return
       }
 
+      setLoading(true);
       const data = await getCats(selectedBreed)
       setCats(data);
       setGalleryiVisible(true);
+      setLoading(false);
     }
     fetchCats();
   }, [selectedBreed]);
@@ -54,24 +59,42 @@ export const App = () => {
     <AppContainer>
 
 <SelectContainer>
-  {options.length > 0 && (
-      <Select options={options} onMenuOpen ={() => setGalleryiVisible(false)} onChange={handleSelectChange}>
-      </Select>
-  )} 
+    {loading ? (
+      <BeatLoader 
+      color="#00BFFF"
+      size={50}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />
+    ) : (
+      options.length > 0 && (
+        <Select options={options} onMenuOpen ={() => setGalleryiVisible(false)} onChange={handleSelectChange}>
+        </Select>
+    )
+    )}
 </SelectContainer>
 
 
 <GalleryContainer>
- {galleryiVisible && cats.length > 0 && (
-         <ImageGallery 
-            items={cats.map(cat => ({
-            original: cat.url,
-            thumbnail: cat.url,
-            // description: cat.breeds[0].wikipedia_url,
-    }))}
-          lazyLoad={true}
-   />
-  )}
+ {loading && galleryiVisible ? (
+    <BeatLoader 
+    color="#00BFFF"
+    size={80}
+    aria-label="Loading Spinner"
+    data-testid="loader"
+  />
+ ) : (
+   cats.length > 0 && (
+    <ImageGallery 
+       items={cats.map(cat => ({
+       original: cat.url,
+       thumbnail: cat.url,
+       // description: cat.breeds[0].wikipedia_url,
+}))}
+     lazyLoad={true}
+/>
+)
+ )}
   </GalleryContainer>
 
 
