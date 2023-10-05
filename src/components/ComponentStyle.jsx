@@ -9,6 +9,14 @@ export const AppContainer = styled.div`
   justify-content: center;
 `;
 
+
+export const StyledTitle = styled.h2`
+  font-size: 24px;
+  color: #00BFFF;
+  margin-bottom: 20px;
+  margin-top: 20px;
+`;
+
 export const SelectContainer = styled.div`
   width: 300px;
   margin: 20px auto;

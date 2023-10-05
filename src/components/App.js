@@ -4,7 +4,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import { GlobalStyle } from './GlobalStyle';
 import { getBreeds, getCats } from '../cat-api';
 
-import { SelectContainer, GalleryContainer, AppContainer } from './ComponentStyle';
+import { SelectContainer, GalleryContainer, AppContainer, StyledTitle } from './ComponentStyle';
 
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -57,6 +57,8 @@ export const App = () => {
 
   return (
     <AppContainer>
+
+      <StyledTitle>Find your cat</StyledTitle>
 
 <SelectContainer>
     {loading ? (
