@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { GlobalStyle } from './GlobalStyle';
 import { getBreeds, getCats } from '../cat-api';
 
-import { SelectContainer, GalleryContainer } from './ComponentStyle';
+import { SelectContainer, GalleryContainer, AppContainer } from './ComponentStyle';
 
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -51,7 +51,7 @@ export const App = () => {
   }
 
   return (
-    <>
+    <AppContainer>
 
 <SelectContainer>
   {options.length > 0 && (
@@ -63,7 +63,6 @@ export const App = () => {
 
 <GalleryContainer>
  {galleryiVisible && cats.length > 0 && (
-    <div style={{maxWidth: '100%', maxHeight: '240px', margin: '0 auto' }}>
          <ImageGallery 
             items={cats.map(cat => ({
             original: cat.url,
@@ -72,13 +71,12 @@ export const App = () => {
     }))}
           lazyLoad={true}
    />
-    </div>
   )}
   </GalleryContainer>
 
 
     <GlobalStyle />
-    </>
+    </AppContainer>
   )
 
 
