@@ -75,8 +75,8 @@ export const App = () => {
 </SelectContainer>
 
 
-{cats.length > 0 && (
-        <GalleryContainer visible={galleryiVisible}>
+{galleryiVisible && cats.length > 0 && (
+        <GalleryContainer>
           <ImageGallery items={cats.map(cat => ({
             original: cat.url,
             thumbnail: cat.url,

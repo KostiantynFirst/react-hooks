@@ -1,23 +1,4 @@
-import styled, { keyframes } from "styled-components";
-
-
-const fadeIn = keyframes`
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;  
-    }
-`;
-
-const fadeOut = keyframes`
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;  
-    }
-`;
+import styled from "styled-components";
 
 export const AppContainer = styled.div`
   background-color: #f5f5f5;
@@ -40,10 +21,7 @@ export const SelectContainer = styled.div`
 
 
 export const GalleryContainer = styled.div`
-
   max-width: 100%;
   max-height: 240px;
   margin: 0 auto;
-  animation: ${({ visible }) => (visible ? fadeIn : fadeOut)} 1.5s easy-in-out;
-  display: ${({ visible }) => (visible ? 'block' : 'none')};
 `;
